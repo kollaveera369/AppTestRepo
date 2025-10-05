@@ -43,7 +43,11 @@ namespace RestApiApp1.Controllers
                 return BadRequest(new { message = "Invalid employee data." });
 
             var newEmployee = new Employee();
-            newEmployee.EmpId = employees.Max(e => e.EmpId) + 1; // auto-generate next ID
+            newEmployee.EmpId = employees.Max(e => e.EmpId) + 1; // auto-generate next ID 
+            newEmployee.FirstName = employeeRequest.FirstName;
+            newEmployee.LastName = employeeRequest.LastName;
+            newEmployee.Salary = employeeRequest.Salary;
+            newEmployee.Department= employeeRequest.Department;
             employees.Add(newEmployee);
 
             return CreatedAtAction(nameof(GetById), new { id = newEmployee.EmpId }, newEmployee);
